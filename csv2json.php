@@ -4,7 +4,7 @@
 * Autor: Josué Barros da Silva
 * Website: joshuawebdev.wordpress.com
 * Email: josue.barros1986@gmail.com
-* Versão 1.3
+* Versão 1.4
 *
 * Lê um arquivo no formato csv ao qual consiste em uma tabela
 * importada de um banco de dados qualquer
@@ -21,8 +21,14 @@
 * sem os colchetes []
 */
 
+// Verifica se o argumento foi informado corretamente                      
+if ($argc < 2 || $argc > 2) {
+    print( "Após invocar o nome do programa digite o nome do arquivo que será convertido!\n" );
+    exit();
+}
+
 // Verifica se o arquivo existe
-function handleFile($filename) {
+function handleFile( $filename ) {
 
     if ( !file_exists( $filename  ) ) {
         throw new Exception( "O arquivo data.csv não existe ou encontra-se em outra pasta!" );
