@@ -4,7 +4,7 @@
 * Autor: Josué Barros da Silva
 * Website: joshuawebdev.wordpress.com
 * Email: josue.barros1986@gmail.com
-* Versão 1.4
+* Versão 1.5
 *
 * Lê um arquivo no formato csv ao qual consiste em uma tabela
 * importada de um banco de dados qualquer
@@ -21,17 +21,19 @@
 * sem os colchetes []
 */
 
-// Verifica se o argumento foi informado corretamente                      
+// Verifica se o argumento foi informado corretamente
 if ($argc < 2 || $argc > 2) {
     print( "Após invocar o nome do programa digite o nome do arquivo que será convertido!\n" );
     exit();
 }
 
+$filename = $argv[1];
+
 // Verifica se o arquivo existe
 function handleFile( $filename ) {
 
     if ( !file_exists( $filename  ) ) {
-        throw new Exception( "O arquivo data.csv não existe ou encontra-se em outra pasta!" );
+        throw new Exception( "O arquivo {$filename} não existe ou encontra-se em outra pasta!" );
     }
 
     // retorna um número inteiro, o indicador do arquivo
@@ -41,7 +43,7 @@ function handleFile( $filename ) {
 
 try {
 
-    $csv_file_array = handleFile( "data.csv" );
+    $csv_file_array = handleFile( $filename );
 
     $csv_head = explode( ";", $csv_file_array[0] );
 
@@ -51,7 +53,7 @@ try {
     // inicia a string abrindo um array no formato json
     $json = "[";
 
-    for ( $i = 0; $i < count( $csv_head ); $i++ ) {
+    for ( $i = 1; $i < count( $csv_file_array ); $i++ ) {
 
         $json .= "\n  {";
 
