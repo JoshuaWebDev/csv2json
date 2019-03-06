@@ -4,11 +4,11 @@
 * Autor: Josué Barros da Silva
 * Website: joshuawebdev.wordpress.com
 * Email: josue.barros1986@gmail.com
-* Versão 1.2
+* Versão 1.3
 *
 * Lê um arquivo no formato csv ao qual consiste em uma tabela
 * importada de um banco de dados qualquer
-* A primeira linha contém os atributos de uma tabela
+* A primeira linha contém os atributos da tabela
 * A segunda em diante contém os dados de cada registro da tabela
 * A primeira linha é dividida e transformada em um array
 * onde seus elementos são os atributos da tabela
@@ -21,42 +21,59 @@
 * sem os colchetes []
 */
 
-// retorna um número inteiro, o indicador do arquivo
-$csv_file_array = file( "data.csv" );
+// Verifica se o arquivo existe
+function handleFile($filename) {
 
-$csv_head = explode( ";", $csv_file_array[0] );
-
-// elimina quebra de linhas
-$csv_head = preg_replace( "/(\r\n|\n|\r)+/", "", $csv_head );
-
-// inicia a string abrindo um array no formato json
-$json = "[";
-
-for ( $i = 0; $i < count( $csv_head ); $i++ ) {
-
-    $json .= "\n  {";
-
-    // cria um array a partir da segunda linha em diante
-    $rows = explode( ";", $csv_file_array[$i] );
-
-    // elimina quebra de linhas
-    $rows = preg_replace( "/(\r\n|\n|\r)+/", "", $rows );
-
-    for ( $j = 0; $j < count( $rows ); $j++ ) {
-
-        $json .= "\n    \"{$csv_head[$j]}\" : \"{$rows[$j]}\",";
-
+    if ( !file_exists( $filename  ) ) {
+        throw new Exception( "O arquivo data.csv não existe ou encontra-se em outra pasta!" );
     }
 
-    $json .= "\n  },";
+    // retorna um número inteiro, o indicador do arquivo
+    return file( $filename );
 
 }
 
-// elimina a última vírgula após a última chave
-$json = preg_replace( "/,$/", "", $json );
+try {
 
-$json .= "\n]\n";
+    $csv_file_array = handleFile( "data.csv" );
 
-echo $json;
+    $csv_head = explode( ";", $csv_file_array[0] );
+
+    // elimina quebra de linhas
+    $csv_head = preg_replace( "/(\r\n|\n|\r)+/", "", $csv_head );
+
+    // inicia a string abrindo um array no formato json
+    $json = "[";
+
+    for ( $i = 0; $i < count( $csv_head ); $i++ ) {
+
+        $json .= "\n  {";
+
+        // cria um array a partir da segunda linha em diante
+        $rows = explode( ";", $csv_file_array[$i] );
+
+        // elimina quebra de linhas
+        $rows = preg_replace( "/(\r\n|\n|\r)+/", "", $rows );
+
+        for ( $j = 0; $j < count( $rows ); $j++ ) {
+
+            $json .= "\n    \"{$csv_head[$j]}\" : \"{$rows[$j]}\",";
+
+        }
+
+        $json .= "\n  },";
+
+    } 
+
+    // elimina a última vírgula após a última chave
+    $json = preg_replace( "/,$/", "", $json );
+
+    $json .= "\n]\n";
+
+    echo $json;
+
+} catch ( Exception $e ) {
+    echo "Aviso: ", $e->getMessage(), "\n";
+}
 
 ?>
