@@ -19,6 +19,6 @@ As demais linhas do arquivo também são convertidas em arrays onde cada element
 
 É possível salvar o conteúdo em outro arquivo por meio do comando
 
-    php csv2json.php > [nome_arquivo.json]
+    php csv2json.php [data.csv] > [nome_arquivo.json]
 
-substituindo o argumento após ">" pelo nome no do arquivo sem os colchetes []
+onde [data.csv] é o arquivo csv a ser convertido em json e [nome_arquivo.json] é o nome do arquivo a ser criado com o conteúdo de [data.csv] no formato json.
