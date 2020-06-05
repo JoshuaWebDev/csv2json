@@ -65,7 +65,7 @@ try {
 
         for ( $j = 0; $j < count( $rows ); $j++ ) {
 
-            $json .= "\n    \"{$csv_head[$j]}\" : \"{$rows[$j]}\",";
+            $json .= "\n    {$csv_head[$j]} : {$rows[$j]},";
 
         }
 
