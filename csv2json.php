@@ -1,10 +1,10 @@
 <?php
 
 /**
-* Autor: Josué Barros da Silva
+* Autor: Josué B. da Silva
 * Website: joshuawebdev.wordpress.com
 * Email: josue.barros1986@gmail.com
-* Versão 1.5
+* Versão 1.6
 *
 * Lê um arquivo no formato csv ao qual consiste em uma tabela
 * importada de um banco de dados qualquer
@@ -71,7 +71,7 @@ try {
 
         $json .= "\n  },";
 
-    } 
+    }
 
     // elimina a última vírgula após a última chave
     $json = preg_replace( "/,$/", "", $json );
