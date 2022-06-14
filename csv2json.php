@@ -22,6 +22,10 @@ $json = $csv2json->convert($filename);
 
 $newfile .= '.json';
 
-file_put_contents($newfile, $json);
+if (file_put_contents($newfile, $json)) {
+    echo "O arquivo " . $filename . " foi convertido para " . $newfile;
+} else {
+    echo "Ocorreu algum erro durante a conversão";
+}
 
 ?>
