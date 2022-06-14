@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "JoshuaWebDev\\Csv2Sql\\": "src/"
+            "JoshuaWebDev\\Csv2Json\\": "src/"
         }
     }
 }
