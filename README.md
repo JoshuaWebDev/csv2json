@@ -29,7 +29,7 @@ Lê um arquivo no formato csv e converte-o para json.
 ## Instalação
 
 ```
-composer require joshuawebdev/csv2sql
+composer require joshuawebdev/csv2json
 ```
 
 ## Execução
@@ -51,7 +51,7 @@ onde [source.csv] é o arquivo csv a ser convertido em json.
 Caso queira reutilizar a biblioteca em outra aplicação, primeiro instale a biblioteca por meio do comando:
 
 ```
-composer require joshuawebdev/csv2sql
+composer require joshuawebdev/csv2json
 ```
 
 Em seguida importe a classe Csv2Json para o local onde deseja utilizar como no exemplo abaixo:
@@ -61,9 +61,9 @@ Em seguida importe a classe Csv2Json para o local onde deseja utilizar como no e
 
 require __DIR__ . '/vendor/autoload.php';
 
-use JoshuaWebDev\Csv2Sql\Csv2Sql;
+use JoshuaWebDev\Csv2Json\Csv2Json;
 
-$csv2sql = new Csv2Sql;
+$csv2json = new Csv2Json;
 
 ```
 
@@ -74,9 +74,9 @@ Uma vez instanciado o objeto da classe Csv2Json é possível usar os métodos se
 
 require __DIR__ . '/vendor/autoload.php';
 
-use JoshuaWebDev\Csv2Sql\Csv2Sql;
+use JoshuaWebDev\Csv2Json\Csv2Json;
 
-$csv2sql = new Csv2Sql;
+$csv2json = new Csv2Json;
 
 $csv2json->setSeparator(';');
 $csv2json->setQuotes('"');
