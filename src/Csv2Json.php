@@ -9,33 +9,29 @@ use Exception;
  * Website: joshuawebdev.wordpress.com
  * GitHub: https://github.com/JoshuaWebDev
  * Email: josue.barros1986@gmail.com
- * @version 1.9
- *
- * Lê um arquivo no formato csv ao qual consiste em uma tabela importada de um banco de dados qualquer
- * pode, inclusive, ser oriunda de uma tabela em planilha (xls, xlsx)
- * A primeira linha contém os atributos da tabela
- * A segunda em diante contém os dados de cada registro da tabela
- * A primeira linha é dividida e transformada em um array onde seus elementos são os atributos da tabela
- * As demais linhas do arquivo também são convertidas em arrays onde cada elemento do array é um dado da tabela
- *
- * É possível definir o tipo de separador (vígula, ponto e vígula, etc)
- * simplesmente alterando a constante SEPARATOR
- * Caso o arquivo de origem possua aspas ao redor dos campos, altere
- * a constante QUOTES para vazio ('')
+ * @version 1.8.1
  */
 
+/**
+ * This is a summary
+ * 
+ * This is a description
+ * 
+ * This is a series of tags
+ * 
+ */
 class Csv2Json
 {
-    private $fileName = null;         // nome do arquivo csv
-    private $separator = ",";         // utilizado para separar as colunas no arquivo csv (padrão = ",")
-    private $quotes = '\"';           // define se haverá aspas ou não
-    private $csvFileArray = null;     // array contendo cada uma das linhas do arquivo csv
+    private $fileName     = null;   // nome do arquivo csv
+    private $separator    = ",";    // utilizado para separar as colunas no arquivo csv (padrão = ",")
+    private $quotes       = '\"';   // define se haverá aspas ou não
+    private $csvFileArray = null;   // array contendo cada uma das linhas do arquivo csv
 
     /**
      * @param  string
-     * @return int
+     * @return array
      */
-    private function handleFile($filename): int
+    private function handleFile($filename): array
     {
         if (is_null($filename)) {
             throw new Exception("O nome do arquivo está nulo (NULL)");
@@ -45,7 +41,9 @@ class Csv2Json
             throw new Exception("O arquivo {$filename} não existe ou encontra-se em outra pasta!");
         }
 
-        // retorna um número inteiro, o indicador do arquivo
+        // retorna os dados do arquivo em formato de
+        // array, onde cada elemento do array corresponde
+        // a uma linha do arquivo
         return file($filename);
     }
 
@@ -82,7 +80,6 @@ class Csv2Json
     public function convert($filename): string
     {
         try {
-
             $csv_file_array = $this->handleFile($filename);
 
             $csv_head = explode($this->separator, $csv_file_array[0]);

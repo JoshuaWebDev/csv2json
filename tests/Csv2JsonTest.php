@@ -3,18 +3,28 @@
 namespace JoshuaWebDev\Csv2Json;
 
 use JoshuaWebDev\Csv2Json\Csv2Json;
-use PHPUnit\Framework\TestCase as PHPUnit;
+use JoshuaWebDev\Csv2Json\TestCase;
 
-class Csv2JsonTest extends PHPUnit
+    class Csv2JsonTest extends TestCase
 {
+    private $csv2json;
+
+    /**
+    * @return void
+    */
+    protected function setUp(): void
+    {
+        $this->csv2json = new Csv2Json();
+        parent::setUp();
+    }
+
     /**
      * @test
      * @return void
      */
     public function shouldBeInstanceOfClass(): void
     {
-        $csv2json = new Csv2Json;
-        $this->assertEquals('JoshuaWebDev\Csv2Json\Csv2Json', get_class($csv2json));
+        $this->assertEquals('JoshuaWebDev\Csv2Json\Csv2Json', get_class($this->csv2json));
     }
 
     /**
@@ -23,8 +33,7 @@ class Csv2JsonTest extends PHPUnit
      */
     public function shouldBePossibleSetTheSeparator(): void
     {
-        $csv2json = new Csv2Json;
-        $csv2json->setSeparator(",");
-        $this->assertEquals(",", $csv2json->getSeparator());
+        $this->csv2json->setSeparator(",");
+        $this->assertEquals(",", $this->csv2json->getSeparator());
     }
 }
